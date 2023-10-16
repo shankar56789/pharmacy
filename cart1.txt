@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+:root {
+    --orange: #ff7800;
+    --black: #130f40;
+    --light-color: #666;
+    --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+    --border: .2rem solid rgba(0, 0, 0, .1);
+    --outline: .1rem solid rgba(0, 0, 0, .1);
+    --outline-hover: .2rem solid var(--black);
+
+}
+
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: all .2s linear;
+}
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+}
+
+body {
+    background: #eee;
+}
+
+section {
+    padding: 2rem 9%;
+}
+
+.heading {
+    text-align: center;
+    padding: 2rem 0;
+    padding-bottom: 3rem;
+    font-size: 3.5rem;
+    color: var(--black);
+}
+
+.heading span {
+    background: var(--orange);
+    color: #fff;
+    display: inline-block;
+    padding: .5rem 3rem;
+    clip-path: polygon(100% 0%, 93% 50%, 100% 99%, 0% 100%, 7% 50%, 0% 0%);
+}
+
+.btn {
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .8rem 3rem;
+    font-size: 1.7rem;
+    border-radius: .5rem;
+    border: .2rem solid var(--black);
+    color: var(--black);
+    cursor: pointer;
+    background: none;
+}
+
+.btn:hover {
+    background: var(--orange);
+    color: #fff;
+}
+
+
+/* header section */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 9%;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+}
+
+.header .logo {
+    font-size: 3rem;
+    font-weight: bolder;
+    color: var(--black);
+}
+
+.header .logo i {
+    color: var(--orange);
+    margin-right: .5rem;
+}
+
+.header .navbar a {
+    font-size: 2rem;
+    margin: 0 1rem;
+    color: var(--black);
+}
+
+.header .navbar a:hover {
+    color: var(--orange);
+}
+
+.header .icons div {
+    height: 4.5rem;
+    width: 4.5rem;
+    line-height: 4.5rem;
+    border-radius: .5rem;
+    background: #eee;
+    color: var(--black);
+    font-size: 2rem;
+    margin-right: .3rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.header .icons div:hover {
+    background: var(--orange);
+    color: #fff;
+}
+
+#menu-btn {
+    display: none;
+}
+
+.header .search-form {
+    position: absolute;
+    top: 110%;
+    right: -110%;
+    width: 50rem;
+    height: 5rem;
+    background: #fff;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--box-shadow);
+}
+
+.header .search-form.active {
+    right: 2rem;
+    transition: .4s linear;
+}
+
+.header .search-form input {
+    height: 100%;
+    width: 100%;
+    background: none;
+    text-transform: none;
+    font-size: 1.8rem;
+    color: var(--black);
+    padding: 0 1.5rem;
+}
+
+.header .search-form label {
+    font-size: 2.2rem;
+    padding-right: 1.5rem;
+    color: var(--black);
+    cursor: pointer;
+}
+
+.header .search-form label:hover {
+    color: var(--orange);
+}
+
+.header .shopping-cart {
+    position: absolute;
+    top: 110%;
+    right: -110%;
+    padding: 1rem;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    width: 30rem;
+    background: #fff;
+}
+
+.header .shopping-cart.active {
+    right: 2rem;
+    transition: .4s linear;
+}
+
+.header .shopping-cart .box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative;
+    margin: 1rem 0;
+}
+
+.header .shopping-cart .box img {
+    height: 10rem;
+}
+
+.header .shopping-cart .box .fa-trash {
+    font-size: 2rem;
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    cursor: pointer;
+    color: var(--light-color);
+    transform: translateY(-50%);
+}
+
+.header .shopping-cart .box .fa-trash:hover {
+    color: var(--orange);
+}
+
+.header .shopping-cart .box .content h3 {
+    color: var(--black);
+    font-size: 1.7rem;
+    padding-bottom: 1rem;
+}
+
+.header .shopping-cart .box .content span {
+    color: var(--light-color);
+    font-size: 1.6rem;
+}
+
+.header .shopping-cart .box .content .quantity {
+    padding-left: 1rem;
+}
+
+.header .shopping-cart .total {
+    font-size: 2.5rem;
+    padding: 1rem 0;
+    text-align: center;
+    color: var(--black);
+}
+
+.header .shopping-cart .btn {
+    display: block;
+    text-align: center;
+    margin: 1rem;
+}
+
+.header .login-form {
+    position: absolute;
+    top: 110%;
+    right: -110%;
+    width: 30rem;
+    box-shadow: var(--box-shadow);
+    padding: 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    text-align: center;
+}
+
+.header .login-form.active {
+    right: 2rem;
+    transition: .4s linear;
+}
+
+.header .login-form h3 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    color: var(--black);
+}
+
+.header .login-form .box {
+    width: 100%;
+    margin: .7rem 0;
+    background: #eee;
+    border-radius: .5rem;
+    padding: 1rem;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+}
+
+.header .login-form p {
+    font-size: 1.4rem;
+    padding: .5rem 0;
+    color: var(--light-color);
+}
+
+.header .login-form p a {
+    color: var(--orange);
+    text-decoration: underline;
+}
+
+/* home section */
+
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../image/banner-bg.webp') no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding-top: 17rem;
+    padding-bottom: 10rem;
+}
+
+.home .content {
+    text-align: center;
+    width: 60rem;
+}
+
+.home .content h3 {
+    color: var(--black);
+    font-size: 3.5rem;
+}
+
+.home .content h3 span {
+    color: var(--orange);
+}
+
+.home .content p {
+    color: var(--light-color);
+    font-size: 1.7rem;
+    padding: 1rem 0;
+    line-height: 1.8;
+}
+
+/* features */
+
+.features .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.features .box-container .box {
+    padding: 3rem 2rem;
+    background: #fff;
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+}
+
+.features .box-container .box:hover {
+    outline: var(--outline-hover);
+    outline-offset: 0rem;
+}
+
+.features .box-container .box img {
+    margin: 1rem 0;
+    height: 15rem;
+}
+
+.features .box-container .box h3 {
+    font-size: 2.5rem;
+    line-height: 1.8;
+    color: var(--black);
+}
+
+.features .box-container .box p {
+    font-size: 1.5rem;
+    line-height: 1.8;
+    color: var(--light-color);
+    padding: 1rem 0;
+}
+
+
+/* products */
+
+.products .product-slider {
+    padding: 1rem;
+}
+
+.products .product-slider:first-child {
+    margin-bottom: 2rem;
+}
+
+.products .product-slider .box {
+    background: #fff;
+    border-radius: .5rem;
+    text-align: center;
+    padding: 3rem 2rem;
+    outline-offset: -1rem;
+    outline: var(--outline);
+    box-shadow: var(--box-shadow);
+    transition: .2s linear;
+}
+
+.products .product-slider .box:hover {
+    outline-offset: 0rem;
+    outline: var(--outline-hover);
+}
+
+.products .product-slider .box img {
+    height: 20rem;
+}
+
+.products .product-slider .box h3 {
+    font-size: 2.5rem;
+    color: var(--black);
+}
+
+.products .product-slider .box .price {
+    font-size: 2rem;
+    color: var(--light-color);
+    padding: .5rem 0;
+}
+
+.products .product-slider .box .stars i {
+    font-size: 1.7rem;
+    color: var(--orange);
+    padding: .5rem 0;
+}
+
+
+/* categories */
+
+.categories .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.categories .box-container .box {
+    padding: 3rem 2rem;
+    border-radius: .5rem;
+    background: #fff;
+    box-shadow: var(--box-shadow);
+    outline: var(--outline);
+    outline-offset: -1rem;
+    text-align: center;
+}
+
+.categories .box-container .box:hover {
+    outline: var(--outline-hover);
+    outline-offset: 0rem;
+}
+
+.categories .box-container .box img {
+    margin: 1rem 0;
+    height: 15rem;
+}
+
+.categories .box-container .box h3 {
+    font-size: 2rem;
+    color: var(--black);
+    line-height: 1.8;
+}
+
+.categories .box-container .box p {
+    font-size: 1.7rem;
+    color: var(--light-color);
+    line-height: 1.8;
+    padding: 1rem 0;
+}
+
+/* reviews */
+
+.reviews .reviews-slider {
+    padding: 1rem;
+}
+
+.reviews .reviews-slider .box {
+    background: #fff;
+    border-radius: .5rem;
+    text-align: center;
+    padding: 3rem 2rem;
+    outline-offset: -1rem;
+    outline: var(--outline);
+    box-shadow: var(--box-shadow);
+    transition: .2s linear;
+}
+
+.reviews .reviews-slider .box:hover {
+    outline-offset: 0rem;
+    outline: var(--outline-hover);
+}
+
+.reviews .reviews-slider .box img {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+
+.reviews .reviews-slider .box p {
+    padding: 1rem 0;
+    line-height: 1.8;
+    color: var(--light-color);
+    font-size: 1.5rem;
+}
+
+
+.reviews .reviews-slider .box h3 {
+    padding-bottom: .5rem;
+    color: var(--black);
+    font-size: 2.2rem;
+}
+
+.reviews .reviews-slider .box .stars i {
+    color: var(--orange);
+    font-size: 1.7rem;
+}
+
+
+/* blogs */
+
+.blogs .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+    gap: 1.5rem;
+}
+
+.blogs .box-container .box {
+    overflow: hidden;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    background: #fff;
+}
+
+.blogs .box-container .box img {
+    height: 25rem;
+    width: 100%;
+    object-fit: cover;
+}
+
+.blogs .box-container .box .content {
+    padding: 2rem;
+}
+
+.blogs .box-container .box .content .icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: var(--border);
+}
+
+.blogs .box-container .box .content .icons a {
+    color: var(--light-color);
+    font-size: 1.5rem;
+}
+
+.blogs .box-container .box .content .icons a:hover {
+    color: var(--black);
+}
+
+.blogs .box-container .box .content .icons a i {
+    color: var(--orange);
+    padding-right: .5rem;
+}
+
+.blogs .box-container .box .content h3 {
+    line-height: 1.8;
+    color: var(--black);
+    font-size: 2.2rem;
+    padding: .5rem 0;
+}
+
+.blogs .box-container .box .content p {
+    line-height: 1.8;
+    color: var(--light-color);
+    font-size: 1.5rem;
+    padding: .5rem 0;
+}
+
+/* footer */
+
+.footer {
+    background: #fff;
+}
+
+.footer .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+}
+
+.footer .box-container .box h3 {
+    font-size: 2.5rem;
+    color: var(--black);
+    padding: 1rem 0;
+}
+
+.footer .box-container .box h3 i {
+    color: var(--orange);
+}
+
+.footer .box-container .box a {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--light-color);
+    padding: 1rem 0;
+}
+
+.footer .box-container .box .links {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--light-color);
+    padding: 1rem 0;
+}
+
+.footer .box-container .box .links i {
+    color: var(--orange);
+    padding-right: .5rem;
+}
+
+.footer .box-container .box .links:hover i {
+    padding-right: 2rem;
+}
+
+.footer .box-container .box p {
+    line-height: 1.8;
+    font-size: 1.5rem;
+    color: var(--light-color);
+    padding: 1rem 0;
+}
+
+.footer .box-container .box .share{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer .box-container .box .share a {
+    height: 4rem;
+    width: 4rem;
+    line-height: 4rem;
+    border-radius: .5rem;
+    font-size: 2rem;
+    color: var(--black);
+    margin: .2rem;
+    background: #eee;
+    text-align: center;
+    margin: .5rem;
+    justify-content: center;
+}
+
+.footer .box-container .box .share a:hover {
+    background: var(--orange);
+    color: #fff;
+}
+
+.footer .box-container .box .email {
+    width: 100%;
+    margin: .7rem 0;
+    padding: 1rem;
+    border-radius: .5rem;
+    background: #eee;
+    font-size: 1.6rem;
+    color: var(--black);
+    text-transform: none;
+}
+
+.footer .box-container .box .payment-img {
+    margin-top: 2rem;
+    height: 3rem;
+}
+
+.footer .credit {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    padding-top: 2.5rem;
+    font-size: 2rem;
+    color: var(--black);
+    border-top: var(--border);
+}
+
+.footer .credit span{
+    color: var(--orange);
+}
+
+@media (max-width:991px) {
+    html {
+        font-size: 55%;
+    }
+
+    .header {
+        padding: 2rem;
+    }
+
+    section {
+        padding: 2rem;
+    }
+}
+
+
+@media (max-width:768px) {
+
+    .header .navbar {
+        position: absolute;
+        top: 110%;
+        right: -110%;
+        width: 30rem;
+        box-shadow: var(--box-shadow);
+        border-radius: .5rem;
+        background: #fff;
+    }
+
+    .header .search-form {
+        width: 90%;
+    }
+
+    .header .navbar.active {
+        right: 2rem;
+        transition: .4s linear;
+    }
+
+    #menu-btn {
+        display: inline-block;
+    }
+
+    .header .navbar a {
+        font-size: 2rem;
+        margin: 2rem 2.5rem;
+        display: block;
+    }
+
+}
+
+@media (max-width:450px) {
+    html {
+        font-size: 50%;
+    }
+
+    .heading {
+        font-size: 2.5rem;
+    }
+
+    .footer{
+        text-align: center;
+    }
+}
+    </style>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <title>online pharmacy</title>
+</head>
+
+<body>
+
+    <!-- header setion starts -->
+
+    <header class="header">
+
+        <a href="#" class="logo"><i class="fas fa-shopping-basket"></i>ONLINE PHARMACY</a>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#features">features</a>
+            <a href="#products">products</a>
+            <a href="#categories">categories</a>
+            <a href="#reviews">reviews</a>
+            <a href="#blogs">blogs</a>
+        </nav>
+
+        <div class="icons">
+            <div class="fas fa-bars" id="menu-btn"></div>
+            <div class="fas fa-search" id="search-btn"></div>
+            <div class="fas fa-shopping-cart" id="cart-btn"></div>
+            <div class="fas fa-user" id="login-btn"></div>
+        </div>
+
+        <form action="" class="search-form">
+            <input type="search" name="" id="search" placeholder="search here....">
+            <label for="search-box" class="fas fa-search"></label>
+        </form>
+
+        <div class="shopping-cart">
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="image/cart-img-1.png" alt="">
+                <div class="content">
+                    <h3>Dolo 650</h3>
+                    <span class="price">100 Rs/-</span>
+                    <span class="quantity">qty : 1</span>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="image/cart-img-2.png" alt="">
+                <div class="content">
+                    <h3>cetrizine</h3>
+                    <span class="price">50 Rs/-</span>
+                    <span class="quantity">qty : 1</span>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-trash"></i>
+                <img src="image/cart-img-3.png" alt="">
+                <div class="content">
+                    <h3>Cough syrup</h3>
+                    <span class="price">120 Rs/-</span>
+                    <span class="quantity">qty : 1</span>
+                </div>
+            </div>
+
+            <div class="total">total: 270 RS/-</div>
+            <a href="#" class="btn">checkout</a>
+        </div>
+
+
+
+        <form action="" class="login-form">
+            <h3>login now</h3>
+            <input type="email" placeholder="your email" id="" class="box">
+            <input type="password" placeholder="your password" id="" class="box">
+            <p>forget your password ? <a href="#">click here</a></p>
+            <p>don't have an account ? <a href="#">create now</a></p>
+            <input type="submit" value="login now" class="btn">
+        </form>
+    </header>
+
+    <!-- header setion ends -->
+
+    <!-- home section starts -->
+
+    <section class="home" id="home">
+
+        <div class="content">
+            <h3>MEDICINES</h3>
+            <p>Welcome to our website.</p>
+            <a href="#" class="btn">shop now</a>
+        </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- features section starts -->
+
+    <section class="features" id="features">
+
+        <h1 class="heading">our <span>features</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="https://tiimg.tistatic.com/fp/1/007/734/cofsils-dry-cough-syrup-no-alcohol-sugar-free-294.jpg" alt="">
+                <h3>Cough Syrup</h3>
+                <p>we deliver you the best and frsh grocery.</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+
+            <div class="box">
+                <img src="https://w7.pngwing.com/pngs/519/713/png-transparent-circle-free-delivery-stamp.png" alt="">
+                <h3>free delivery</h3>
+                <p>Thinking about the delivery cost? it is completely free.</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+
+            <div class="box">
+                <img src="https://cdn.vectorstock.com/i/preview-1x/05/44/online-store-concept-demonstrates-easy-payment-vector-28390544.jpg" alt="">
+                <h3>easy payments</h3>
+                <p>Easy in making fastest payments.</p>
+                <a href="#" class="btn">read more</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- features section ends -->
+
+    <!-- products section starts -->
+
+    <section class="products" id="products">
+
+        <h1 class="heading">our <span>products</span></h1>
+
+        <div class="swiper product-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_480,h_480,c_fit,q_auto,f_auto/xa7fesaa8dlllhwmfw1z.jpg" alt="">
+                    <h3>Cetrizine</h3>
+                    <div class="price">150.rs</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/product-2.png" alt="">
+                    <h3>fresh onion</h3>
+                    <div class="price">$4.99/- - $10.99/-</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/product-3.png" alt="">
+                    <h3>fresh meat</h3>
+                    <div class="price">$4.99/- - $10.99/-</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/product-4.png" alt="">
+                    <h3>fresh cabbage</h3>
+                    <div class="price">$4.99/- - $10.99/-</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="swiper product-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxISEhUSEhMVFhUVGBoYGBcXFRgVFRoXFxcYFxkYHRoYHiggGxolHxcVITEhJSkrMC8uHR8zODMuOCgtLisBCgoKDg0OGxAQGy0lICYuNi8yLS0tLS0tNS8tLi0tLi0vLS0tLS0vLS01Ly0tLy0tLy0tLy0tLS0tLS0tLS0tL//AABEIAOEA4QMBIgACEQEDEQH/xAAcAAEAAwEBAQEBAAAAAAAAAAAABQYHBAMCAQj/xABEEAABAwEFBAYFCQYHAQEAAAABAAIDEQQSITHwBUFRcQYTIjJhgTSRobGyIzNCU3Jzs8HRFBZSgpKiBxVDYsLh8STS/8QAGgEBAAMBAQEAAAAAAAAAAAAAAAMEBQIBBv/EAD0RAAEDAgQDBQcDAgMJAAAAAAEAAhEDBCExQVEFEmFxgZHB8BMUIjKhsdEVcuFi8SNCUiQzNIKSorLC0v/aAAwDAQACEQMRAD8A3FERERERERERERFybSlLYZHg0LWOIPiGkhZXL0xtocR1uRI7rdxUb6oZmqd1e07aOcHHZa+ixx3Te1jOYD+lfP782v68f2KP3lqqfrVvs7wH5Wyosb/fm1/Xt/sX5+/Nr+vH9ie8tT9ZobO8B+VsqLGv35tf14/sT9+bV9eP7P0T3lq9/WaGzvAflbKixr9+bV9eP7P0T9+bV9eP7P0T3lqfrNDZ3gPytlRY1+/Nq+vH9n6J+/Nq+vH9n6J7y1P1mhs7wH5Wyosbb03tZwE4P9C+/wB87b9b7Gp7y1efrVvs7wH5WwoqZ0G27NO5zJn3jdLhgBS6Wg/GFc1MxwcJC0beu2vTFRuRRERdKZERERERERERERERERERERERERcW1/R5fu3/AAlYzY2ROtDWzOuxueWk1pi4hrQTuBcWgncCTgtm2v6PL92/4SsL2hAH9YxwqHXgfWVVuDDmlYfF3BtSk4iQDMeGC2ez9G7K1oDYW0H+0D2AL42jBYrMy/KyNo3dkEk8AKVJVB6A9N3wPbYra6oNGwTuPe3CN5P0sgHHPAHGhM1tmQWnabY3GsNlYZHjMVYA84czGKeBVynD8dF9HYhlwC+fgALjHTIdCSQNYmVKbJ2zs60SdUyMBxqQHxNbeoK4eWK69kmxWi/1UbSGOuuJjAF7w4/9hV+2bUsc0k1rYJhPDEQC6ga1xrE0Ur3qvd6iuXorapYnWWzREDrv/omJAJuuq5ox7vyTIx/Muy3D8/Xy8VoVbJppuc0FpGYccobzPPUQWcswfiV8/wAls/1TP6Qn+S2f6pn9IVNHTCa5PI0B9Zeps7LtMcSSd7sHRDmV1ybUt1le42m7JEGVvNYGNDz3WtObu1Qeddy55DkoHcPrNdyEjmyAkySIBAwzkxjEkGJhWf8Ayaz/AFTP6R+i/DsSz/VM/pCpv+f21jrLI98ZbanNuwiOl2N7mgEurWpDq+HivCfpRa3R2i0RyRshjlDGVjBc6pvUBJoKNIJJBr4LoUyTgfUwu2cMrP5eVzYMAGTElxbGW4JnKBMq7O2JZvqmf0hV22bb2bDIY3ABzTdPyQcKjdVe1j6WC6xkrJDMIRI8tYBGCIutNTXDcMBmaKH6KAMsNttkgBdKXjEZ0BAGPF73BeNbhJXlC1+AvqgnFoaAYkunodAdJmMFP2eaC0xgxxwyxvq2hibmM2ua4eI8is629FALVIyzmsbXUzq1pZhI0Hg114eVF42ra9ogssdks1Y32kvmklydHC53UtDDuc/qndrMDLEgid/w86OsFHEC5HQNb/E4Df4CtabzyxpXlRjTy9V8/wAaotrXJs6BkhxxOMNEiT9I3+okOj9mdZprO92AkLmObTEB4AbX+YNr5LR1SduRhxAORqrLsG1mWBj3d4gg+JaS0nzpXzVLhdy6q1wdufAQI7sFfFqy2Y2mzIDX1rmpFERay8REREREREREREREREREREREREXFtf0eX7t/wlYdP33faPvW47X+Yl+7f8JWHT9932j71Uucwvn+OZs7/JeE0DHikjQ5tQSDvorpZLZJBaprRAbPKLQSW35mRubffeDS17muBGApTHBU9c9ssrZWljxUFcUaxpzqCoOFcWfY87eUOa+JB6GZEdY1V8b0TtTrO5l1hfPMHSOEgNGNbQEn6RvPkdhwC7HbDtjLTaZI4mG/G6KMmUANYQ1raDOoa0Z0yOagOgXTZ9ne2x2xxc1xpDMfpbgxxP08gD9LI40LtVtcrjEXRdpxHZpTfhXHDDPHgtAVSRI19eS+zZxapVbzCCD03Id/6jDKAAqIei1oiZZHMjEjoXF8kfWNb2y++MTgaUYK/wC0L32vsK32izymR4vvka5sIk7LGC9VodgL3ab/AE54qxS2m2CtGNJaTkw0d3gPp1Feyd/jTFfb5rTR1QG9yl1te8QXZl2LQHDLEkGi69oZBXY4lXDg/DmBmYx+Yu+5JwgnIkqt2jYdrnf18kbIzFEWQRB4dRxaWB5OQAD3nPMDhj4S9F5v2azWajbvWGS0G+36TqUA+lRhI9SsUtutLQasbg2tSP8AbUtNDStQRUYY1oAvKzWuSSt5u+jaAgmoByJNKVofGvDHwPK5HEKzQA2ABl0+EtEdkkj+ok5r46TRyzWeSOGl6QtFC8MIZW87PkB5lU+a1VgFjkns0cMBpIIpRLOXNNCC1pIDrxPeoAc8qL96b9LCxzrDYnfL5TztOEI3xsP1vE/R55VCxWVsTQxgw9pPEqCpcGmIbmsq446+yYKVIDmB5hhkThPbttmCCuu32l0kxcGhsdA1rRjdYxoaxtfAAczU7yrz0Ujc6xStZW+5jw2hobxjoMd2NMVQ1fOikRfYpWAgF0b2gk0FTHQVO4Y5rJuDJYT/AKh9nLF4K8vu3OdnyHv+Jip/R+2zxWrqrQ6W9JeBY/MSYG/juIDsRnUHHNa70T9Fj5v/ABHLJrHaJ2TwWe2Mc57HHq3P+cYbpyd/qMIqMzu4LWeinosfN/4jlZtv97MDEHLI4txHrvK3rc/4USTB/wA2BHQ/nVTCIi0VIiIiIiIiIiIiIiIiIiIiIiIiIuLa/wAxL92/4SsOn77vtH3rcdr/ADEv3b/hKyDZD2ttQc8Nc0OdVtLwPYfSjaEnGmSq3AlwCxeK0XVqtKm3MmMp20+q+dmbAtFoaXxMvNGFS5oHleIr5KMtMZY9zHYOaS078WmhxHiFrEO3og2hvtybS5JmaAN7uZvDDxWY7dF6aZ7R2OsdjhXMmh8aUwOKjq0uRshR3vBX29EPDXHckGMs8sO8qKtkDJWljxUFWv8Aw+6bPge2xW1xcHGkUxPe3Bjj/HwP0sj2qXqk5xC+LTA2VpY8VB9ijp1iw9FTs7p1s7+nULe7ZbXscy61pjfhfc+6ATkDQHA7jx4b45+3XAnBgDQS4kzAAh4ZShiqe0QMAab1QegfTJ0bhYLc681/Zilfi19cLjyfpbgT3sj2u9enQS3wG4tulofSrwCWEY73C4AHHECm9bVu+i5suHfj6nRbrnVHjnpOkHoP4wnfqMBC9Da5HyXKNoMyHONCfo0LWmvEbt+OCp3Tfpe6IusVid/9BwmnGIgBzY0/W8T9Hnl8dMulvUVsNhcOvpSWVpq2Bpza075jvP0eao1lgbE263zO8neSVSubhrTDB66qG6vDQbyAy8/T1pOPYvWx2dsTbrfM7yeJXQ165gSV7NFFnSvnXNLpcc17hX3orGHWGVpcGh0bwXOwaKx0qTwGZWehy0TobZ+ssckdaX2OZWlaXmBtab81FXPyfuH2ctLgY/2l37D/AOTFUrCLRZ5rPZrQ2+yp6ok3mto00dE7e2mF3gcgtZ6Keix83/iOWT2Sx2ixzwQSAOie43D3o63SQ5lcWOzw3gnPNax0U9Fj5v8AjcrNpHtJEZHEZHFuMaHcb6nT6CjIpwZEHJ2JHSdRsVMIiLSXaIiIiIiIiIiIiIiIiIiIiIiIi4tr/MS/dv8AhKxywCcz3LM5gkeXNq8Eta36ROB3Abitj2v6PL92/wCErFWWh8cpfGbrgXUOBpWoOfgSq1Z3K9pWZd3QtbmlWLeaObDtETthMwc4jCZF3f0dcLvWzyucKdpojYAQ5j+yOrqBeYw/yhVbpbYJY3hz5mvicXXDdo+vZwkAAbUNAGGeOAXjN0ktn1xI+wz/APKj7btaaaglfeDcQKNGf2QFy65DmkQV6/jwdScyCZaW4wPmEaGfDOIwzXnHEH4HNeM9mcw45biumDHEKfsYjlbckA5rLrPNPHMLHpMFb4SYO6p9ps7ZWljxUFeIFsazqW26cQ/w9a/Lhxp4XqKe2tsh0JrmzceHP9VHUXdK5PLLDgVGKte2JYCR0XJZLKyJtxgoPeuiCzueaAeakdlbIfOcMG7z+QU5amRwtuMGPFV3XPx8oxd6zUlOg57TVqGBvv2KuugDMN68CF2T0zK5HmquMCr1HyYGS+QVpv8Ah98x5/8AFqzZjFpX+H/zGv4WqO4/y/u8itHgn/Eu/Y77tXB+0uviN0cwY0nqnSsuktABDTxI3HeOWNz6K+ix83/iOVJNpd1kbHPBLQWPY41kD4y6rqnG7S4Accxkrt0U9Fj5v/EcrFmzlqnCJBOE44txxA+bPDAzLfhgL7HiAiocIy9d+eGCmERFqLPREREREREREREREREREREREREXFtf0eX7t/wAJWITd932j71t+1/R5fu3/AAlY3YoGuleX4RtJvHhXAHAHf+eSqXIkgBYvFKL61alTZmZHrszPRcgYueey72+pWn/L7PI29E8DGmT72eV0gEHnwXHNsyVgDi0lpFQ4UIpxqMlUe0tVW54XXt/mEjcSR34CPt1VajlLTUKWslpDhUYEbt4XjbbDe7TM+HFRTZC08CFHg4KkAQrmzarBG7ru4AamlcOW/lvVZNktZ+WbYndSTUNvDrCw78+G72710WQftBYy7WkjHPG6401Jx3ZYK6TTU+SMre83JpwvVDRQk13bxy49W9rTbLoz0kx9CM19Jw+1ZdUees3mgwOzDxUQzbEbom9Rg1w4UI3EEbiDUUUTarQBicz6yvzaMfUSTEd2SUlv2g2O/wCVRXzUO+Qk1OJUTLZlIkN/nvWRxEvZXdTOmXZAI+kL1llJNSuqxWIu7TsB7117I2O55Bc0k7mq0wbMDHNbJWrgTQY0DR7TUtwC9DnVHctMdp0Hf5Lyz4bUuHdN/X2zVUms9N2CvfQIfI+f5BR21LIKOo2R7nDsi4RRoxoDSgqcSSd3gApPoEfkvP8AIJcMLA2d/IrYtuH+6XeDpBY7SMnMn7hQkL5OtAkzul16QXnuvHKOQYGIUaaeJV86K+ix83/iOVDie7rGNq1zRVoLa9m7fFHNd2mPNR4GivnRX0WPm/8AEcrduIrZAYHLtbpoehxGWy3+Jj/FOG3npp2aKYREWis1ERERERERERERERERERERERERcW1/mJfu3/CVk2wXNE7wQDUmleOP6Baztf5iX7t/wlYkZC2QuG4k+3BVbgwQVlX1x7vc0auxPgcD9CVP9ILfNEQyt2N4N0gAcxXzzXRsfb5aA12QAApmAMAujbVmFqsnZxc2hbzGY8xX2KiWW1Fho7Ljw/6Vao57HSCpL+6uLW6Dg6WkSAcsMD36yMcQtDnggnxF0E/SwB8+Pmqtt/YYBHaF4ioIyONMfFfNnmrkR5r8tksjiKYgDjjmoi5r9IKgrXFtcsks5X76dcd43HeoyxWOeJ15jmtIqKg1wIoRSnDirHaLbbRGC24Q4d6lXBRsb8McDTFdB2gWNu3gGnjT81213KYU1hdNtXEOBIOnXs66qJMEktHOdmK9qtanM08VK9HtjsLyXu7o5bwPzXFNaW0wIqeHJelks0ji2Qvut712lbzdwPAHArhxaBzPy236KqwU3Vva1BMmSJ/tkrcdpCNtyMD+XLmXKDtU5recauPH8uAXzNaA1QvWvtEjYo83Gl73nkAqpqVbggRytGg9D6Qp7viL6kU6YjYDfTbXTAK42MFtmMjiauBqak0GQA1vUj0A+Z8/yao7pJKI4RG3dQAeANFI9APmPM/C1WLsQGN2PkVpc8XTKJMkUnGd5LBJ64KGZG8zCSR3WEtdde0ANuOxDXC6HNdhhWowNCr50V9Fj5v/ABHKlzWAska5kvWREG7Ui80AG6ARg5vad45K6dFfRY+b/wARyntHtfVlpEQRgIiC3CMII10OYwIWnxFwdUkHCBkI3wjTr46qYREWms9ERERERERERERERERERERERERcW1/mJfu3/CViEg7bvtH3rb9r/MS/dv8AhKxF57bvtH3qpc5hYHG/mZ3+SsnRm3/QPPzJKjOlmzQ1/WNHZd7Dl6jn618WUkEOGYx81z9NdsmRkFmhdSS0Pa05VDS4N35Vd7iomD2reXULQoht9Y+zcYc2MezI94kHvxyVYsvSWFr7l53OgDeYJVlsttbI0Oa4EHIjWakLRsTZ7InxCz3hGWsLnMBcXEZ1GJyOIWexu/YbY6LEQyUoDXsh3dca5UNRyqvXW7XA8syubvg7WUueiTI0zn6Z+oVo2pPdBI+iK+zEeY9tFWIrDa7Uashmfeyo1xb5GlFYrbZXydlv023cjvwvcslcejFskiigh6iSlxovtLbgNBWu/OqkoHlEqfhdKafORmBHhp+R3LKnwz2SSkrHsocWkUB43dxKv81qDBQbhSvCi4OmNpdPEXOhexrXtILyDvANKeBK5JHF/LMDnioLtgqcpI38lV42fYlhbrMnw/lflqtLpDQZe/mrN0NsYY0ynM5eVQVE7I2WZnUyaO8f0VltUrYWXIxn2QOes1zRZjOgXHBrVz3+8PwaJjtynsGPf2KN27P1jvAVHuP6K1dAvmf5vyCqU0JpjnvVv6Cn5I8/+LVUrv8AaQf6vIqa1qe14g+p/QQOwOZHjn2kqGsxcHNjEt5ovXmPF2Vjq1wriW867qFXjop6LHzf+I5UeSzOFoDnymbvhjxKHtDTTslhFWnPEEjHcrx0U9Fj5v8AxHK7alprFzSDIJwjOW7AfUA7yfiP0XESDUkGcsfUfUA6HKTMIiLSWciIiIiIiIiIiIiIiIiIiIiIiIuHbHo833b/AISsOkcC51P4j71uu0vmZfsP+ErI9rbPa9znDsvqcRvx3jf7/EqGtTLxgs3iNk64ALDiNN1wWO1Bpo7u8eCoTtsB1uFqkDrglDg0CpusPYoDvwaT41V1uY3X9l39ruR4+GapfSGxtilLcaUBFOeXvVa1aBUcHYGP7rnhTSzma4Q4b/XyWvbUc90T3tILHvDmEOwIugg5YDE8Vk/T+1MknFMSxgDyOOJpTwr7fBWfo1tB8tixLuwS3P8Ahy54ELOrQS57yd5NfMqxTHxHovoK7vgEa4rabDYy2zsv9s9W0PO/BoB9WK8tk2yR0YuPIcwAUqDUCoDgHEA+K8ztb/42GhrKA0UBNARUnDgFxmxhzGtoCOIGXJQmoGnFcPuKdOoGE5jPbbxXpBG+0yNgeS8Mq+Sho1ta3W4b+NPHJdfSCxiK6SKAmg348/1HnuXJsN/7PK1kbXObIQHupTGtAQDiRjuwopLpoHCMu3Nc139wC9kPCgqvp3NvUkSIOHZiD5/yF0bPnYyIXc8a+s/lRekUdflHcMK7goDYLnvDpXENi3k76bh7vNfW0tpmU3W1DNw3nn+izLuqS0UWf8x8vM+GRVJ10Pdm0xtEdnkc197Rtt43Wd3jx/6Vz6Aj5Hz/AOLVQiy7QULnuwawCpryGZWidD7JJFHdlFHYEitadkYGmFVGR8DYGE+RVXh0m6e7Zhx0zbgq9DCzrGyR3S0h9KUL43EhxjeRmMDdJFSDTgr50U9Fj5v/ABHKiski6yMNZde1pD3NBay9U1jdeNS4UrjXLNXror6LHzf+I5aduXGt8U5O+bOJbGpnedc9V9RxMuNU806Z569T4655yphERaCzERERERERERERERERERERERERFy7S+Zk+w74SsztrcXcz79awWm7R+ak+w74Ss6trMTzOtexEUDbIgQQRUcDrXhkql0h2G6Qh7HEkbjjgMc89Zb1dbQzWtcs1GzM1rXvXhaDiuS2TOu/rMdD98VydFg2KzNY7PEnmTWnlkqp0oszWvBaLrXk1pQZU/wDVZ5Y6GrTQ+w8xv5+9c9q2VHam9W+XqXggt7N+u7HEYY8cPFVQ1zKkk4Fe+3uHltN0QNRhPTE/TXSVY2xsNjjuHs0F2lMqYZ+S4MThedQ50o4HyfWnl6l7wQuhs0UR7RZ2a5VoMD4VXm2QHPDngoKvzKlxJxFfuC7bDca5pF6gIOOAGPAUU10vDTAQ7Ilo9bgFWLTaLrTTE7hmVOdOJwI42/xPbXflju5Be0vlK6s6kUKs6CfEEeSr087pLrGijW4NYMgP18V37NsDnm7FQuydIe4zwHF3gPOi+Nn2C936tb/DXtO5kZD/AGjzKtVio0BoAAGAAFABwprzzUdHh/NBqZbflQUbV7hNTAba/wAffsXXsLZMcGLaukPekdiTXcP4R4D2qcsfzj+Q+EKMgfrWua77G8Bz3EgAYknKgaMeSmvmgU2gf6h9itagxrAQ0QIVNZab8tGdY6NpeS+RrRIHlt2hc13bwObgDlir90W9Fj/m+NyptrsLmzMdea9pDqPykINKB5GEgyo7NXLot6LH/N8blHZuY5004iDl2tnbHeWtJzIxk3eIOa58sygefZ9hOylkRFprPREREREREREREREREREREREREXPb/mpPsO9xVDtkeJ5617s1fbZ82/7LvcVTbXFieete/NEVdtEeta55qMtDNa1zU/aYta1zUVaY9a17kRQ0zda1zyXJKzjrWuCkp2a1rlkuKRuta5IhE4L6htzgLriXNrWu8YUx4j2roje0ioxr44KNcNa1718t30JFc8aV5fr781VqW04tVO4tnVDzA45Y/nP79NAu20zF1WN86E+on8hiu7r3Pd1j3Fz+J3DgBk3y9dcFFxGmA1rVV1RO1rXPJS06IYOqloW/shufXqc+qmLO/WtclLWZ+ta5ZqAs79a17lKWaTWtcslKp1YLO/Wte9SMFCJqmgLTU0rQdW2ppvUHZ5Na1yU1ZSC2W8SBdNSMSB1YrhxVG/8AlZ+4fYqSnk7s/Chra4MEIbTtEioNWOFK1bwOHvVt6Leix/zfG5VG3PaBDdoaupeAwcKYVB7rlbui3osf83xuUVkQXEyDgcQI1bmN9/QHDfkjs+2hUsiItNeIiIiIiIiIiIiIiIiIiIiIiIiLxtXcf9k+4qsWmPE+ete3JWe09x32T7lATtz1rXJEUHaYta17lEWqPWtcslY7RHrWuSibVFrWuWaIq7aI9a1yXjsqztltDY34NIJJNK0DHPzOAyXbaC04Aj1jcae/W9Rkxad7T/MDrMeveo6rC4YFVrmi+oG8jogzG/SRj6xVhm6Lwhvezka2+WAtaHGOpJDaHvGhLmg0BGa+HdGmYm7dAAc4OAL2NLHuq7si7iwDKmIzqCarIQN/t4mnvw/XJeLpPH2616lD7F3olVvdak5D/rd/8+vAi2x9GPlZGuutYABE5zWNEj3d1ovUBBIdXPJeG2NlsiijexwLnUq0gHFzA81oOz3gN9fIqribx9utcF6NtA3n261wzXnsX7/UqN1jV5SAQDvzuw/7Rl/ecVKQP1+WvapGzya1r3KDjmGVR69a45qSs0tcta1VWgIELUYC1oBMka79VPWeTWtcslY7ARclvVpdNaZ06sVp4qpWZ+ta55K3bEYHB7TkcDyMbQqV/wDIz9w+zlPT/wA3Z+FEW6TCG5iK0LqUN0jJw3c1bOivosfN/wCI5VjbEZaYmjENcRX6V2mR4jJWbop6LHzf+I5Q2Lw90gzgdIOBbn1GXlvxylrYIjLsy0UwiItRcoiIiIiIiIiIiIiIiIiIiIiIiLxtHcd9k+5Q0zcTrWslNWjuO+yfcomUa1r3oijpma1rlmoy0x61rnmpmVuta55qPtDNa1zRFRdqWNrXBgge9oDAHB2AoXACmeA341riSaKHnjqR8hIKYYuIyN07qEdhprv7KvlqaNa17FE2lo461oZIip74m3SBE8A0w7Qwvmu7cKYbq0wyXnNZwLoLDi6mBJAq2hOAHKngMslYZ2jWteC4ZW61rw3oihXDfcdhhma9muWGOIoONRyX43DARvyGNf4QKDyqQpF+ta88l8B2ta9yIvKzlrSKMcKitDWlSe6aigxz8TWm9WHZlnkeDcje6lKhjS4Nru7I3kE4+PNQ7H61rlkrb0VtYbDamftDbPI/q7jibvdLi4YZZgVHHJcvdyiVw9xa0kL6ZG9ho9rmng5paeePL/1WPYNtocd4ofEUoDzA9Y40UPt21NcYgJhMWRBr5BU1cHEmpOJzGfM8V82OahBGY1r8814Wh7YcF0xxiVNbekoWnn+StGwLOY7PG050qf5iXU54qtiz9fJA3MFxJ4XQA4+Ry81dlUsbQ27C0mTJ8FLUqc5RERXlGiIiIiIiIiIiIiIiIiIiIiIiIvOfuu5H3KLc3Wtc1MIiKAkjPDWtHJcU1ndwOtayVsREWd2rYwJJ6vE14789/gP+lGz7DxqIj7da3ZrVkRFi8/R87oT7d2tZrik2DJuhdxy31rr881uqIi/n+XYMp/0XerWuOa8DsCX6h3q1riv6HREX89N2FNUHqX4U3cMtf+Lri2XP9U/1a1wyW9IiLE7Ps+Yf6bvVrXBSlmscv8DvVrXDNawiIqz0VhdWrgQWhwx/3Xf0KsyIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiIiL//2Q==" alt="">
+                    <h3>Glucon D</h3>
+                    <div class="price">30.Rs</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/product-6.png" alt="">
+                    <h3>fresh avocado</h3>
+                    <div class="price">$4.99/- - $10.99/-</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/product-7.png" alt="">
+                    <h3>fresh carrot</h3>
+                    <div class="price">$4.99/- - $10.99/-</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/product-8.png" alt="">
+                    <h3>green lemon</h3>
+                    <div class="price">$4.99/- - $10.99/-</div>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <a href="#" class="btn">add to cart</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- products section ends -->
+
+    <!-- categories section starts -->
+
+    <section class="categories" id="categories">
+
+        <h1 class="heading">product <span>categories</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <img src="https://www.uppapharmacy.com/wp-content/uploads/2021/06/dolo-650.jpg" alt="">
+                <h3>Dolo 650</h3>
+                <p>upto 45% off</p>
+                <a href="#" class="btn">shop now</a>
+            </div>
+
+            <div class="box">
+                <img src="https://content.jdmagicbox.com/quickquotes/images_main/himalaya-ayurveda-products-30-12-2020-409-219961682-wxpp7.png?impolicy=queryparam&im=Resize=(360,360),aspect=fit" alt="">
+                <h3>Himalaya</h3>
+                <p>upto 45% off</p>
+                <a href="#" class="btn">shop now</a>
+            </div>
+
+            <div class="box">
+                <img src="https://www.bigbasket.com/media/uploads/p/l/263850_7-vicks-vapo-rub-with-menthol-camphor-eucalyptus-oil-provides-relief-from-cold.jpg" alt="">
+                <h3>Vicks</h3>
+                <p>upto 45% off</p>
+                <a href="#" class="btn">shop now</a>
+            </div>
+
+            <div class="box">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxFzRdvAcaSSLHz9lG49somv9eWxB_APEhCA&usqp=CAU" alt="">
+                <h3>Ayurvedic Medicine</h3>
+                <p>upto 45% off</p>
+                <a href="#" class="btn">shop now</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- categories section ends -->
+
+    <!-- reviews section starts -->
+
+    <section class="reviews" id="reviews">
+
+        <h1 class="heading">customer's <span>reviews</span></h1>
+
+        <div class="swiper reviews-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide box">
+                    <img src="https://media.istockphoto.com/id/666545204/vector/default-placeholder-profile-icon.jpg?s=612x612&w=0&k=20&c=UGYk-MX0pFWUZOr5hloXDREB6vfCqsyS7SgbQ1-heY8=" alt="">
+                    <p>"Convenient online platform, vast product selection,
+                        smooth browsing experience, timely delivery."</p>
+                    <h3>Arun M</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/pic-2.png" alt="">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati magnam perferendis dolores mollitia architecto ut nesciunt ipsam, nobis numquam minima?</p>
+                    <h3>jhn deo</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/pic-3.png" alt="">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati magnam perferendis dolores mollitia architecto ut nesciunt ipsam, nobis numquam minima?</p>
+                    <h3>jhn deo</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <div class="swiper-slide box">
+                    <img src="image/pic-4.png" alt="">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati magnam perferendis dolores mollitia architecto ut nesciunt ipsam, nobis numquam minima?</p>
+                    <h3>jhn deo</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- footer section starts -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>ONLINE PHARMACY <i class="fas fa-shopping-basket"></i></h3>
+                <div class="share">
+                    <a href="" class="fab fa-facebook-f"></a>
+                    <a href="" class="fab fa-twitter"></a>
+                    <a href="" class="fab fa-linkedin"></a>
+                    <a href="" class="fab fa-instagram"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3> contact info</h3>
+               <a href="#" class="links"><i class="fas fa-phone"></i>+91 6006536006</a>
+               <a href="#" class="links"><i class="fas fa-phone"></i>+91-6005536005</a>
+               <a href="#" class="links"><i class="fas fa-envelope"></i>pharmacy@gmail.com</a>
+               <a href="#" class="links"><i class="fas fa-map-marker-alt"></i>avadi, chennai - 600062</a>
+            </div>
+
+            <div class="box">
+                <h3> quick links</h3>
+               <a href="#" class="links"><i class="fas fa-arrow-right"></i>home</a>
+               <a href="#" class="links"><i class="fas fa-arrow-right"></i>features</a>
+               <a href="#" class="links"><i class="fas fa-arrow-right"></i>products</a>
+               <a href="#" class="links"><i class="fas fa-arrow-right"></i>categories</a>
+               <a href="#" class="links"><i class="fas fa-arrow-right"></i>review</a>
+               <a href="#" class="links"><i class="fas fa-arrow-right"></i>blogs</a>
+               
+            </div>
+
+            <div class="box">
+                <h3>newsletter</h3>
+               <p>sucscribe for latest updates</p>
+               <input type="email" class="email" placeholder="your email">
+               <input type="submit"  placeholder="subscribe" class="btn">
+               <img src="image/payment.png" class="payment-img" alt="">
+            </div>
+
+        </div>
+
+        <div class="credit"> created by <span>mr. masam abbas</span> | all rights reserved</div>
+
+    </section>
+    <script>
+        let searchForm = document.querySelector('.search-form');
+
+document.querySelector('#search-btn').onclick = () => {
+    searchForm.classList.toggle('active');
+    navbar.classList.remove('active');
+    shoppingCart.classList.remove('active');
+    loginForm.classList.remove('active');
+}
+
+
+let shoppingCart = document.querySelector('.shopping-cart');
+
+document.querySelector('#cart-btn').onclick = () => {
+    shoppingCart.classList.toggle('active');
+    navbar.classList.remove('active');
+    searchForm.classList.remove('active');
+    loginForm.classList.remove('active');
+}
+
+
+let loginForm = document.querySelector('.login-form');
+
+document.querySelector('#login-btn').onclick = () => {
+    loginForm.classList.toggle('active');
+    navbar.classList.remove('active');
+    searchForm.classList.remove('active');
+    shoppingCart.classList.remove('active');
+}
+
+let navbar = document.querySelector('.navbar');
+
+document.querySelector('#menu-btn').onclick = () => {
+    navbar.classList.toggle('active');
+    searchForm.classList.remove('active');
+    shoppingCart.classList.remove('active');
+    loginForm.classList.remove('active');
+}
+
+window.onscroll = () => {
+    navbar.classList.remove('active');
+    searchForm.classList.remove('active');
+    shoppingCart.classList.remove('active');
+    loginForm.classList.remove('active');
+}
+
+// slider products
+
+var swiper = new Swiper(".product-slider", {
+    loop: true,
+    spaceBetween: 20,
+    centeredSlides: true,
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction: false,
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        1020: {
+            slidesPerView: 3,
+        },
+    },
+});
+
+
+// reviews slider
+
+var swiper = new Swiper(".reviews-slider", {
+    loop: true,
+    spaceBetween: 20,
+    centeredSlides: true,
+    autoplay: {
+        delay: 7500,
+        disableOnInteraction: false,
+    },
+    breakpoints: {
+        0: {
+            slidesPerView: 1,
+        },
+        768: {
+            slidesPerView: 2,
+        },
+        1020: {
+            slidesPerView: 3,
+        },
+    },
+});
+    </script>
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
